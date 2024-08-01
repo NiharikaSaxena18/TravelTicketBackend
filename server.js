@@ -1,7 +1,9 @@
 import express from "express";
 import cors from "cors";
-import { connectDB } from "./config/db.js";
+import connectDB from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
+import packageRouter from "./routes/packageRoute.js";
+import orderRouter from "./routes/orderRoute.js";
 import "dotenv/config";
 
 //app config
@@ -17,8 +19,11 @@ app.use(cors());
 
 //db connection
 connectDB();
+
 // api endpoints
 app.use("/api/user", userRouter);
+app.use("/api/package", packageRouter);
+app.use("/api/checkout", orderRouter);
 
 app.get("/", (req, res) => {
   res.send("API is working");
