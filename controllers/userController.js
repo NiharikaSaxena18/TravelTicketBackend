@@ -63,4 +63,14 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser };
+const detailsUser = async (req, res) => {
+  try {
+    const id = req.body.userId;
+    const user = await userModel.findById(id).select("-password -_id -__v");
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { loginUser, registerUser, detailsUser };

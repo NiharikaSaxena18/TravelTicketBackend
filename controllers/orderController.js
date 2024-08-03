@@ -7,7 +7,7 @@ const placeOrder = async (req, res) => {
     "http://127.0.0.1:5500/TravelTicketFrontend/public/pages/verify.html";
   try {
     const newOrder = new orderModel({
-      userId: "12345689",
+      userId: req.body.userId,
       amount: req.body.amount,
       address: req.body.street,
     });
@@ -20,10 +20,10 @@ const placeOrder = async (req, res) => {
         {
           price_data: {
             currency: "inr",
-            unit_amount: req.body.amount * 100, // convert to paise
+            unit_amount: req.body.amount * 84,
             product_data: {
-              name: "Travel Ticket",
-              description: "Travel ticket purchase",
+              name: "Travel Tour",
+              description: "Travel Tour Purchase",
             },
           },
           quantity: 1,
@@ -37,7 +37,7 @@ const placeOrder = async (req, res) => {
     res.json({ success: true, session_url: session.url });
   } catch (error) {
     console.log(error);
-    res.json({ success: false, messag: "Error occurred" });
+    res.json({ success: false });
   }
 };
 
@@ -57,4 +57,14 @@ const verifyOrder = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder };
+const displayOrder = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ userId: req.body.userId });
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
+
+export { placeOrder, verifyOrder, displayOrder };
