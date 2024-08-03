@@ -1,4 +1,3 @@
-import userModel from "../models/userModel.js";
 import orderModel from "../models/orderModel.js";
 import Stripe from "stripe";
 
@@ -6,13 +5,23 @@ const placeOrder = async (req, res) => {
   const frontend_url =
     "http://127.0.0.1:5500/TravelTicketFrontend/public/pages/verify.html";
   try {
+    console.log(req.body);
+
+    const startDate = new Date(req.body.startDate);
+    const endDate = new Date(req.body.startDate);
+    endDate.setDate(endDate.getDate() + parseInt(req.body.journeyDuration));
+
     const newOrder = new orderModel({
       userId: req.body.userId,
       amount: req.body.amount,
       address: req.body.street,
+      location: req.body.location,
+      travelDates: {
+        startDate: startDate,
+        endDate: endDate,
+      },
     });
     await newOrder.save();
-    await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
     const session = await stripe.checkout.sessions.create({
