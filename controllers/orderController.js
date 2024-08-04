@@ -5,8 +5,6 @@ const placeOrder = async (req, res) => {
   const frontend_url =
     "http://127.0.0.1:5500/TravelTicketFrontend/public/pages/verify.html";
   try {
-    console.log(req.body);
-
     const startDate = new Date(req.body.startDate);
     const endDate = new Date(req.body.startDate);
     endDate.setDate(endDate.getDate() + parseInt(req.body.journeyDuration));
@@ -29,7 +27,7 @@ const placeOrder = async (req, res) => {
         {
           price_data: {
             currency: "inr",
-            unit_amount: req.body.amount * 84,
+            unit_amount: req.body.amount * 100,
             product_data: {
               name: "Travel Tour",
               description: "Travel Tour Purchase",
