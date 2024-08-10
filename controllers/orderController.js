@@ -3,7 +3,7 @@ import Stripe from "stripe";
 
 const placeOrder = async (req, res) => {
   const frontend_url =
-    "http://127.0.0.1:5500/TravelTicketFrontend/public/pages/verify.html";
+    "https://akashtripathi12.github.io/TravelTicketFrontend/public/pages/verify.html";
   try {
     const startDate = new Date(req.body.startDate);
     const endDate = new Date(req.body.startDate);
