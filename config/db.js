@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const connectDB = async () => {
   await mongoose
-    .connect(
-      "mongodb+srv://webkriti:abviiitm@cluster0.5dyr4fa.mongodb.net/travel-ticket"
-    )
+    .connect(process.env.MONGOdb_URL)
     .then(() => console.log("DB Connected"));
 };
 
