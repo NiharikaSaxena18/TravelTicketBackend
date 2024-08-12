@@ -11,6 +11,7 @@ const orderSchema = new mongoose.Schema({
   },
   date: { type: Date, default: Date.now() },
   payment: { type: Boolean, default: false },
+  promoCode: { type: String, default: "" },
 });
 
 const orderModel =
