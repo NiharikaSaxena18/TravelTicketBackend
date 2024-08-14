@@ -5,6 +5,8 @@ import userRouter from "./routes/userRoute.js";
 import packageRouter from "./routes/packageRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import "dotenv/config";
+import verifyRouter from "./middleware/verifyToken.js";
+import newsletter from "./newsletter.js";
 
 //app config
 const app = express();
@@ -24,6 +26,8 @@ connectDB();
 app.use("/api/user", userRouter);
 app.use("/api/package", packageRouter);
 app.use("/api/checkout", orderRouter);
+app.use("/api/verifytoken", verifyRouter);
+app.use("/api/subscribe", newsletter);
 
 app.get("/", (req, res) => {
   res.send("API is working");

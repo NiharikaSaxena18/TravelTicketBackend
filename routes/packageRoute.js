@@ -9,7 +9,7 @@ const packageRouter = express.Router();
 
 // sending data to server
 packageRouter.get("/listings", showPackages);
-packageRouter.get("/:id", showDetailPackages);
-packageRouter.post("/filter", searchEngine);
+packageRouter.get("/details/:id", showDetailPackages);
+packageRouter.get("/filter", searchEngine);
 
 export default packageRouter;
