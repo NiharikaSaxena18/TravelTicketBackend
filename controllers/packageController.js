@@ -23,17 +23,12 @@ const showPackages = async (req, res) => {
 
 const searchEngine = async (req, res) => {
   try {
-    const { location, price } = req.query;
-    if (!location || !price) {
-      return res
-        .status(400)
-        .json({ message: "Location and price are required" });
+    const { location } = req.query;
+    if (!location) {
+      return res.status(400).json({ message: "Location is required" });
     }
     const query = {
-      $and: [
-        { location: { $regex: location, $options: "i" } },
-        { price: { $lte: parseInt(price) } },
-      ],
+      $and: [{ location: { $regex: location, $options: "i" } }],
     };
     const results = await packages.find(query).limit(10);
     res.json(results);
