@@ -22,7 +22,7 @@ Visit the next generation amazing TravelToor project: [Check it out here](https:
 
         2. /api/package/details/:id : Display the desired listing with the package Id from database.
 
-        3. /api/package/filter : Display all the desired listings user searched for with location filter.
+        3. /api/package/filter : Display all the desired listings user searched with location filter.
 
 - ### Order verification / display & CheckOut Page:
 
@@ -35,7 +35,7 @@ Visit the next generation amazing TravelToor project: [Check it out here](https:
         3. /api/checkout/booked : Display all the orders of the desired user using userId
                                   and passess through a middleware to validate user token.
 
-        4. /api/checkout.promovalidate : Checks whether the user is using the correct or
+        4. /api/checkout/promovalidate : Checks whether the user is using the correct or
                                          reused promoCode for the discount feature and
                                          passess through a middleware to validate user token.
 
