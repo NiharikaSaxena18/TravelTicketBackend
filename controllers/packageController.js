@@ -31,11 +31,6 @@ const searchEngine = async (req, res) => {
       $and: [{ location: { $regex: location, $options: "i" } }],
     };
     const results = await packages.find(query).limit(10);
-    if (results.length === 0) {
-      return res
-        .status(404)
-        .json({ message: `Packages of desired location not found` });
-    }
     res.json(results);
   } catch (error) {
     console.log(error);
